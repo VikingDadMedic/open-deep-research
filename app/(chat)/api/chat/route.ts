@@ -190,7 +190,7 @@ export async function POST(request: Request) {
         tools: {
           search: {
             description:
-              "Search for web pages. Normally you should call the extract tool after this one to get a spceific data point if search doesn't the exact data you need.",
+              "Search for web pages. Normally you should call the extract tool after this one to get a spceific data point if search doesn't the exact data you need. Make sure if there are specials they are for 2025 and not older.",
             parameters: z.object({
               query: z
                 .string()
