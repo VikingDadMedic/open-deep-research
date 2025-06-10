@@ -55,10 +55,12 @@ const app = new FirecrawlApp({
 
 // const reasoningModel = customModel(process.env.REASONING_MODEL || 'o1-mini', true);
 
-export async function POST(request: Request) {
-  const maxDuration = process.env.MAX_DURATION
-    ? parseInt(process.env.MAX_DURATION)
-    : 300; 
+// Export maxDuration for Vercel serverless function configuration
+export const maxDuration = process.env.MAX_DURATION
+  ? Number.parseInt(process.env.MAX_DURATION)
+  : 300;
+
+export async function POST(request: Request) { 
   
   const {
     id,
