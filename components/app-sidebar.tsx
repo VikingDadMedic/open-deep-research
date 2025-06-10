@@ -36,7 +36,7 @@ export function AppSidebar({ user }: { user: User | undefined }) {
                 className="flex flex-row gap-3 items-center"
               >
                 <span className="text-lg font-semibold hover:bg-muted  rounded-md cursor-pointer">
-                  Deep Research
+                  Toby AI 2.0
                 </span>
               </Link>
               <Link
@@ -47,7 +47,7 @@ export function AppSidebar({ user }: { user: User | undefined }) {
                 className="flex flex-row gap-3 items-center"
               >
                 <span className="text-sm text-muted-foreground leading-3">
-                  by Firecrawl 🔥
+                  by Voyager Social AI
                 </span>
               </Link>
             </div>

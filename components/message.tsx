@@ -72,14 +72,16 @@ const PurePreviewMessage = ({
       message.toolInvocations.forEach((toolInvocation: any) => {
         try {
           if (toolInvocation.toolName === 'search' && toolInvocation.state === 'result') {
-            const searchResults = toolInvocation.result.data.map((item: any, index: number) => ({
-              title: item.title,
-              url: item.url,
-              description: item.description,
-              source: new URL(item.url).hostname,
-              relevance: 1 - (index * 0.1), // Decrease relevance for each subsequent result
-            }));
-            sources.push(...searchResults);
+            if (toolInvocation.result?.data && Array.isArray(toolInvocation.result.data)) {
+              const searchResults = toolInvocation.result.data.map((item: any, index: number) => ({
+                title: item.title,
+                url: item.url,
+                description: item.description,
+                source: new URL(item.url).hostname,
+                relevance: 1 - (index * 0.1), // Decrease relevance for each subsequent result
+              }));
+              sources.push(...searchResults);
+            }
           }
         } catch (error) {
           console.error('Error processing search results:', error);
@@ -189,7 +191,7 @@ const PurePreviewMessage = ({
           )}
 
           <div className="flex flex-col gap-2 w-full">
-            {message.experimental_attachments && (
+            {message.experimental_attachments && message.experimental_attachments.length > 0 && (
               <div className="flex flex-row justify-end gap-2">
                 {message.experimental_attachments.map((attachment) => (
                   <PreviewAttachment
@@ -256,18 +258,21 @@ const PurePreviewMessage = ({
                       <div key={toolCallId}>
                         {toolName === 'search' ? (
                           <SearchResults
-                            results={result.data.map((item: any) => ({
-                              title: item.title,
-                              url: item.url,
-                              description: item.description,
-                              source: new URL(item.url).hostname,
-                              favicon: item.favicon,
-                            }))}
+                            results={result?.data && Array.isArray(result.data) 
+                              ? result.data.map((item: any) => ({
+                                  title: item.title,
+                                  url: item.url,
+                                  description: item.description,
+                                  source: new URL(item.url).hostname,
+                                  favicon: item.favicon,
+                                }))
+                              : []
+                            }
                           />
                         ) : toolName === 'extract' ? (
                           <ExtractResults
                             results={
-                              state === 'result' && result.data
+                              state === 'result' && result?.data
                                 ? Array.isArray(result.data)
                                   ? result.data.map((item: any) => ({
                                       url: item.url,

@@ -1,0 +1,282 @@
+{
+  "version": "1.0.0",
+  "created_at": "2025-01-10T08:30:00Z",
+  "components": {
+    "chat": {
+      "app/(chat)/api/chat/route.ts": {
+        "type": "api",
+        "exports": ["POST", "DELETE"],
+        "description": "Main chat API endpoint handling AI interactions, tool calls, and streaming responses",
+        "dependencies": ["@ai-sdk/openai", "@mendable/firecrawl-js", "ai"],
+        "loc": 712,
+        "complexity": "high"
+      },
+      "components/chat.tsx": {
+        "type": "component",
+        "exports": ["Chat"],
+        "description": "Main chat interface component with message list and input",
+        "dependencies": ["deep-research-context", "messages", "multimodal-input"],
+        "loc": 120,
+        "complexity": "medium"
+      },
+      "components/message.tsx": {
+        "type": "component",
+        "exports": ["Message"],
+        "description": "Individual message component with rich content rendering",
+        "dependencies": ["block", "markdown", "message-actions"],
+        "loc": 450,
+        "complexity": "high"
+      },
+      "components/multimodal-input.tsx": {
+        "type": "component",
+        "exports": ["MultimodalInput"],
+        "description": "Chat input with file attachments and suggestions",
+        "dependencies": ["suggested-actions", "preview-attachment"],
+        "loc": 280,
+        "complexity": "medium"
+      }
+    },
+    "deep_research": {
+      "components/deep-research.tsx": {
+        "type": "component",
+        "exports": ["DeepResearch"],
+        "description": "Deep research panel showing activity and sources",
+        "dependencies": ["framer-motion", "@radix-ui/react-tabs"],
+        "loc": 95,
+        "complexity": "low"
+      },
+      "lib/deep-research-context.tsx": {
+        "type": "context",
+        "exports": ["DeepResearchProvider", "useDeepResearch"],
+        "description": "React context for managing deep research state",
+        "dependencies": ["react"],
+        "loc": 150,
+        "complexity": "medium"
+      }
+    },
+    "document": {
+      "components/document.tsx": {
+        "type": "component",
+        "exports": ["Document"],
+        "description": "Document viewer with version history",
+        "dependencies": ["document-skeleton", "markdown"],
+        "loc": 100,
+        "complexity": "medium"
+      },
+      "components/editor.tsx": {
+        "type": "component",
+        "exports": ["Editor"],
+        "description": "Rich text editor based on ProseMirror",
+        "dependencies": ["prosemirror-*", "lib/editor/*"],
+        "loc": 110,
+        "complexity": "high"
+      },
+      "components/document-preview.tsx": {
+        "type": "component",
+        "exports": ["DocumentPreview"],
+        "description": "Document preview with toolbar actions",
+        "dependencies": ["toolbar", "diffview"],
+        "loc": 170,
+        "complexity": "medium"
+      }
+    },
+    "ui_components": {
+      "components/ui/button.tsx": {
+        "type": "ui",
+        "exports": ["Button", "buttonVariants"],
+        "description": "Reusable button component with variants",
+        "dependencies": ["class-variance-authority"],
+        "loc": 50,
+        "complexity": "low"
+      },
+      "components/ui/sidebar.tsx": {
+        "type": "ui",
+        "exports": ["Sidebar", "SidebarContent", "SidebarHeader"],
+        "description": "Sidebar navigation component system",
+        "dependencies": ["@radix-ui/react-slot"],
+        "loc": 600,
+        "complexity": "high"
+      }
+    },
+    "auth": {
+      "app/(auth)/auth.ts": {
+        "type": "auth",
+        "exports": ["auth", "signIn", "signOut"],
+        "description": "NextAuth configuration and auth utilities",
+        "dependencies": ["next-auth", "bcrypt-ts"],
+        "loc": 75,
+        "complexity": "medium"
+      },
+      "app/(auth)/actions.ts": {
+        "type": "actions",
+        "exports": ["getUser", "createUser"],
+        "description": "Server actions for authentication",
+        "dependencies": ["lib/db/queries"],
+        "loc": 50,
+        "complexity": "low"
+      }
+    },
+    "database": {
+      "lib/db/schema.ts": {
+        "type": "schema",
+        "exports": ["User", "Chat", "Message", "Document", "Vote", "Suggestion"],
+        "description": "Drizzle ORM database schema definitions",
+        "dependencies": ["drizzle-orm", "@vercel/postgres"],
+        "loc": 120,
+        "complexity": "medium"
+      },
+      "lib/db/queries.ts": {
+        "type": "queries",
+        "exports": ["getUser", "saveChat", "deleteChatById", "getDocumentById"],
+        "description": "Database query functions",
+        "dependencies": ["drizzle-orm", "./schema"],
+        "loc": 200,
+        "complexity": "medium"
+      }
+    },
+    "ai": {
+      "lib/ai/index.ts": {
+        "type": "config",
+        "exports": ["customModel"],
+        "description": "AI SDK configuration and model setup",
+        "dependencies": ["@ai-sdk/openai", "@openrouter/ai-sdk-provider"],
+        "loc": 70,
+        "complexity": "low"
+      },
+      "lib/ai/prompts.ts": {
+        "type": "prompts",
+        "exports": ["blocksPrompt", "regularPrompt", "systemPrompt"],
+        "description": "System prompts for AI interactions",
+        "dependencies": [],
+        "loc": 85,
+        "complexity": "low"
+      }
+    },
+    "editor": {
+      "components/code-editor.tsx": {
+        "type": "component",
+        "exports": ["CodeEditor"],
+        "description": "CodeMirror-based code editor with syntax highlighting",
+        "dependencies": ["@codemirror/*"],
+        "loc": 85,
+        "complexity": "medium"
+      },
+      "components/spreadsheet-editor.tsx": {
+        "type": "component",
+        "exports": ["SpreadsheetEditor"],
+        "description": "Interactive spreadsheet component",
+        "dependencies": ["react"],
+        "loc": 580,
+        "complexity": "high"
+      }
+    },
+    "blocks": {
+      "components/block.tsx": {
+        "type": "component",
+        "exports": ["Block"],
+        "description": "Universal block renderer for various content types",
+        "dependencies": ["weather", "search-results", "extract-results"],
+        "loc": 470,
+        "complexity": "high"
+      },
+      "hooks/use-block.ts": {
+        "type": "hook",
+        "exports": ["useBlock"],
+        "description": "Hook for managing block state and updates",
+        "dependencies": ["swr"],
+        "loc": 40,
+        "complexity": "low"
+      }
+    },
+    "search": {
+      "components/search-results.tsx": {
+        "type": "component",
+        "exports": ["SearchResults"],
+        "description": "Display component for web search results",
+        "dependencies": ["lucide-react"],
+        "loc": 160,
+        "complexity": "medium"
+      },
+      "components/extract-results.tsx": {
+        "type": "component",
+        "exports": ["ExtractResults"],
+        "description": "Display component for extracted data",
+        "dependencies": ["lucide-react"],
+        "loc": 125,
+        "complexity": "medium"
+      }
+    }
+  },
+  "patterns": {
+    "api_routes": {
+      "pattern": "app/**/api/**/route.ts",
+      "count": 7,
+      "description": "Next.js API route handlers"
+    },
+    "server_components": {
+      "pattern": "app/**/page.tsx",
+      "count": 4,
+      "description": "Next.js page components (RSC)"
+    },
+    "client_components": {
+      "pattern": "components/**/*.tsx",
+      "count": 50,
+      "description": "Client-side React components"
+    },
+    "hooks": {
+      "pattern": "hooks/use-*.ts",
+      "count": 4,
+      "description": "Custom React hooks"
+    },
+    "ui_primitives": {
+      "pattern": "components/ui/*.tsx",
+      "count": 15,
+      "description": "shadcn/ui components"
+    }
+  },
+  "dependencies_graph": {
+    "core_dependencies": [
+      "next@15.0.3",
+      "react@19.0.0-rc",
+      "ai@4.1.16",
+      "@mendable/firecrawl-js@1.15.7",
+      "drizzle-orm@0.34.0"
+    ],
+    "dependency_clusters": {
+      "ai_cluster": ["@ai-sdk/openai", "@openrouter/ai-sdk-provider", "@ai-sdk/togetherai"],
+      "ui_cluster": ["@radix-ui/*", "framer-motion", "lucide-react"],
+      "editor_cluster": ["prosemirror-*", "@codemirror/*"],
+      "auth_cluster": ["next-auth", "bcrypt-ts"]
+    }
+  },
+  "search_index": {
+    "total_files": 180,
+    "indexed_files": 65,
+    "searchable_entities": [
+      {
+        "name": "DeepResearch",
+        "type": "component",
+        "tags": ["research", "ui", "activity", "sources"],
+        "file": "components/deep-research.tsx"
+      },
+      {
+        "name": "Chat",
+        "type": "component",
+        "tags": ["chat", "ui", "messaging", "input"],
+        "file": "components/chat.tsx"
+      },
+      {
+        "name": "POST /api/chat",
+        "type": "endpoint",
+        "tags": ["api", "chat", "ai", "streaming"],
+        "file": "app/(chat)/api/chat/route.ts"
+      },
+      {
+        "name": "useDeepResearch",
+        "type": "hook",
+        "tags": ["hook", "context", "state", "research"],
+        "file": "lib/deep-research-context.tsx"
+      }
+    ]
+  }
+} 

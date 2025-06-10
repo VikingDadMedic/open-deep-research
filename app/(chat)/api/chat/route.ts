@@ -311,7 +311,7 @@ export async function POST(request: Request) {
           },
           deepResearch: {
             description:
-              'Perform deep research on a topic using an AI agent that coordinates search, extract, and analysis tools with reasoning steps.',
+              'Perform deep research on a topic using an Toby AI 2.0 that coordinates search, extract, and analysis tools with reasoning steps.',
             parameters: z.object({
               topic: z.string().describe('The topic or question to research'),
             }),
@@ -644,7 +644,7 @@ export async function POST(request: Request) {
                   },
                 };
               } catch (error: any) {
-                console.error('Deep research error:', error);
+                console.error('Look at this error:', error);
 
                 addActivity({
                   type: 'thought',

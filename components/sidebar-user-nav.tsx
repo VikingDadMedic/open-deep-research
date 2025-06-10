@@ -54,10 +54,10 @@ export function SidebarUserNav({ user }: { user: User }) {
                 type="button"
                 className="w-full cursor-pointer"
                 onClick={() => {
-                  window.open('https://firecrawl.dev', '_blank');
+                  window.open('https://www.voyagersocial.ai', '_blank');
                 }}
               >
-                Visit Firecrawl
+                Visit Voyager Social AI
               </button>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>

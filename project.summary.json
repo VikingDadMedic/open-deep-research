@@ -1,0 +1,133 @@
+{
+  "overview": {
+    "name": "Open Deep Research",
+    "tagline": "Open-Source clone of OpenAI's Deep Research experiment",
+    "purpose": "Enable AI-powered deep web research using Firecrawl's extract + search capabilities with reasoning models",
+    "key_innovation": "Combines real-time web data extraction with structured reasoning to perform comprehensive research tasks"
+  },
+  "core_features": [
+    {
+      "name": "Deep Web Research",
+      "description": "Automated multi-step research process using AI reasoning and web scraping",
+      "components": ["deep-research.tsx", "deep-research-context.tsx"],
+      "status": "active"
+    },
+    {
+      "name": "Intelligent Chat Interface",
+      "description": "Conversational AI with streaming responses, file attachments, and rich content rendering",
+      "components": ["chat.tsx", "message.tsx", "multimodal-input.tsx"],
+      "status": "active"
+    },
+    {
+      "name": "Document Generation",
+      "description": "AI-powered document creation with real-time editing and version control",
+      "components": ["document.tsx", "editor.tsx", "document-preview.tsx"],
+      "status": "active"
+    },
+    {
+      "name": "Web Data Extraction",
+      "description": "Firecrawl integration for structured data extraction from websites",
+      "components": ["extract-results.tsx", "search-results.tsx", "scrape-results.tsx"],
+      "status": "active"
+    },
+    {
+      "name": "Code Execution",
+      "description": "Sandboxed code execution with Python and JavaScript support",
+      "components": ["run-code-button.tsx", "code-editor.tsx", "console.tsx"],
+      "status": "active"
+    }
+  ],
+  "technical_architecture": {
+    "frontend": {
+      "framework": "Next.js 15 with App Router",
+      "ui_library": "React 19 RC",
+      "styling": "Tailwind CSS + shadcn/ui components",
+      "state_management": "React Context API + Server State",
+      "key_patterns": [
+        "Server Components for initial rendering",
+        "Client Components for interactivity",
+        "Streaming UI updates",
+        "Optimistic updates"
+      ]
+    },
+    "backend": {
+      "api": "Next.js API Routes with Server Actions",
+      "database": "PostgreSQL with Drizzle ORM",
+      "authentication": "NextAuth.js with session management",
+      "storage": "Vercel Blob for file uploads",
+      "rate_limiting": "Upstash Redis"
+    },
+    "ai_integration": {
+      "sdk": "Vercel AI SDK",
+      "providers": ["OpenAI", "OpenRouter", "TogetherAI"],
+      "models": {
+        "chat": ["gpt-4o", "claude-3", "gemini-pro"],
+        "reasoning": ["o1-mini", "deepseek-reasoner"]
+      },
+      "capabilities": [
+        "Streaming responses",
+        "Tool calling (search, extract)",
+        "Structured outputs",
+        "Multi-modal inputs"
+      ]
+    }
+  },
+  "data_flow": {
+    "research_pipeline": [
+      "User initiates research query",
+      "AI generates search strategy",
+      "Firecrawl searches and extracts web data",
+      "AI analyzes and synthesizes findings",
+      "Results streamed to UI in real-time",
+      "Documents generated from research"
+    ],
+    "chat_pipeline": [
+      "User sends message with optional attachments",
+      "Message processed through AI SDK",
+      "Tools called for search/extract if needed",
+      "Response streamed with UI blocks",
+      "Chat history persisted to database"
+    ]
+  },
+  "key_integrations": {
+    "firecrawl": {
+      "purpose": "Web search and data extraction",
+      "features": ["Search API", "Extract API", "Scrape API"],
+      "usage": "Core research functionality"
+    },
+    "vercel_services": {
+      "postgres": "Primary database",
+      "blob": "File storage",
+      "analytics": "Usage tracking"
+    },
+    "ai_providers": {
+      "openai": "Primary AI provider",
+      "openrouter": "Multi-model gateway",
+      "togetherai": "Alternative models (DeepSeek)"
+    }
+  },
+  "deployment": {
+    "platform": "Vercel",
+    "environment_variables": [
+      "AUTH_SECRET",
+      "OPENAI_API_KEY",
+      "FIRECRAWL_API_KEY",
+      "DATABASE_URL",
+      "BLOB_TOKEN"
+    ],
+    "scalability": "Edge functions with streaming support"
+  },
+  "development_workflow": {
+    "package_manager": "pnpm",
+    "code_quality": ["ESLint", "Biome", "TypeScript"],
+    "database_migrations": "Drizzle Kit",
+    "testing": "Not implemented yet"
+  },
+  "future_roadmap": [
+    "Multi-agent research coordination",
+    "Custom model fine-tuning",
+    "Collaborative research sessions",
+    "API for third-party integrations",
+    "Enhanced visualization tools"
+  ]
+} 

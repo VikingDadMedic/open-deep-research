@@ -1,0 +1,233 @@
+{
+  "version": "1.0.0",
+  "created_at": "2025-01-10T08:30:00Z",
+  "entities": [
+    {
+      "id": "project_root",
+      "type": "project",
+      "name": "Open Deep Research",
+      "attributes": {
+        "description": "Open-source clone of OpenAI's Deep Research experiment",
+        "framework": "Next.js 15",
+        "language": "TypeScript",
+        "status": "active"
+      }
+    },
+    {
+      "id": "deep_research_feature",
+      "type": "feature",
+      "name": "Deep Research System",
+      "attributes": {
+        "purpose": "Automated multi-step web research using AI",
+        "components": ["deep-research.tsx", "deep-research-context.tsx"],
+        "state_management": "React Context API"
+      }
+    },
+    {
+      "id": "chat_system",
+      "type": "feature",
+      "name": "Chat System",
+      "attributes": {
+        "purpose": "AI-powered conversational interface",
+        "capabilities": ["streaming", "file_attachments", "tool_calling"],
+        "api_endpoint": "/api/chat"
+      }
+    },
+    {
+      "id": "firecrawl_integration",
+      "type": "integration",
+      "name": "Firecrawl Integration",
+      "attributes": {
+        "purpose": "Web data extraction and search",
+        "apis": ["search", "extract", "scrape"],
+        "library": "@mendable/firecrawl-js"
+      }
+    },
+    {
+      "id": "ai_sdk",
+      "type": "integration",
+      "name": "Vercel AI SDK",
+      "attributes": {
+        "purpose": "Unified AI provider interface",
+        "providers": ["OpenAI", "OpenRouter", "TogetherAI"],
+        "features": ["streaming", "tool_calling", "structured_output"]
+      }
+    },
+    {
+      "id": "document_system",
+      "type": "feature",
+      "name": "Document Generation",
+      "attributes": {
+        "purpose": "AI-powered document creation and editing",
+        "editor": "ProseMirror",
+        "features": ["real_time_editing", "version_history", "diff_view"]
+      }
+    },
+    {
+      "id": "auth_system",
+      "type": "system",
+      "name": "Authentication System",
+      "attributes": {
+        "library": "NextAuth.js",
+        "method": "session-based",
+        "providers": ["credentials"]
+      }
+    },
+    {
+      "id": "database_layer",
+      "type": "system",
+      "name": "Database Layer",
+      "attributes": {
+        "database": "PostgreSQL",
+        "orm": "Drizzle",
+        "hosting": "Vercel Postgres"
+      }
+    },
+    {
+      "id": "ui_system",
+      "type": "system",
+      "name": "UI System",
+      "attributes": {
+        "library": "shadcn/ui",
+        "styling": "Tailwind CSS",
+        "components": "Radix UI primitives"
+      }
+    },
+    {
+      "id": "block_renderer",
+      "type": "component",
+      "name": "Block Renderer",
+      "attributes": {
+        "purpose": "Universal content block rendering",
+        "types": ["code", "document", "search_results", "weather"],
+        "file": "components/block.tsx"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "source": "project_root",
+      "target": "deep_research_feature",
+      "type": "contains",
+      "attributes": {
+        "role": "core_feature"
+      }
+    },
+    {
+      "source": "project_root",
+      "target": "chat_system",
+      "type": "contains",
+      "attributes": {
+        "role": "primary_interface"
+      }
+    },
+    {
+      "source": "deep_research_feature",
+      "target": "firecrawl_integration",
+      "type": "uses",
+      "attributes": {
+        "purpose": "web_data_extraction"
+      }
+    },
+    {
+      "source": "chat_system",
+      "target": "ai_sdk",
+      "type": "uses",
+      "attributes": {
+        "purpose": "ai_interactions"
+      }
+    },
+    {
+      "source": "chat_system",
+      "target": "block_renderer",
+      "type": "uses",
+      "attributes": {
+        "purpose": "content_display"
+      }
+    },
+    {
+      "source": "document_system",
+      "target": "ai_sdk",
+      "type": "uses",
+      "attributes": {
+        "purpose": "content_generation"
+      }
+    },
+    {
+      "source": "chat_system",
+      "target": "auth_system",
+      "type": "protected_by",
+      "attributes": {
+        "method": "session_validation"
+      }
+    },
+    {
+      "source": "chat_system",
+      "target": "database_layer",
+      "type": "persists_to",
+      "attributes": {
+        "data": ["messages", "chat_history"]
+      }
+    },
+    {
+      "source": "document_system",
+      "target": "database_layer",
+      "type": "persists_to",
+      "attributes": {
+        "data": ["documents", "versions"]
+      }
+    },
+    {
+      "source": "project_root",
+      "target": "ui_system",
+      "type": "styled_by",
+      "attributes": {
+        "approach": "component_based"
+      }
+    },
+    {
+      "source": "block_renderer",
+      "target": "ui_system",
+      "type": "uses",
+      "attributes": {
+        "components": ["card", "button", "skeleton"]
+      }
+    },
+    {
+      "source": "deep_research_feature",
+      "target": "chat_system",
+      "type": "integrates_with",
+      "attributes": {
+        "method": "context_provider"
+      }
+    }
+  ],
+  "semantic_tags": {
+    "core_features": ["deep_research_feature", "chat_system", "document_system"],
+    "integrations": ["firecrawl_integration", "ai_sdk"],
+    "infrastructure": ["auth_system", "database_layer", "ui_system"],
+    "key_components": ["block_renderer"]
+  },
+  "memory_notes": [
+    {
+      "timestamp": "2025-01-10T08:30:00Z",
+      "note": "Project uses Next.js 15 App Router with React 19 RC",
+      "tags": ["architecture", "framework"]
+    },
+    {
+      "timestamp": "2025-01-10T08:30:00Z",
+      "note": "Deep Research feature is the key differentiator, using Firecrawl for web data",
+      "tags": ["feature", "core"]
+    },
+    {
+      "timestamp": "2025-01-10T08:30:00Z",
+      "note": "All components follow kebab-case naming convention",
+      "tags": ["convention", "naming"]
+    },
+    {
+      "timestamp": "2025-01-10T08:30:00Z",
+      "note": "Authentication is session-based using NextAuth.js",
+      "tags": ["security", "auth"]
+    }
+  ]
+} 

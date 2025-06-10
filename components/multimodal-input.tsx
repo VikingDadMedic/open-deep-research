@@ -295,7 +295,7 @@ function PureMultimodalInput({
               className="rounded-full px-3 py-1.5 h-fit flex items-center gap-2 data-[state=inactive]:bg-transparent data-[state=active]:bg-orange-50 hover:bg-orange-50/50 data-[state=active]:text-orange-600 border-0 data-[state=active]:shadow-none transition-colors"
             >
               <Telescope size={14} />
-              Deep Research
+              Toby AI 2.0
             </TabsTrigger>
           </TabsList>
         </Tabs>

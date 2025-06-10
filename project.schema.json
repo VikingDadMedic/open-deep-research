@@ -1,0 +1,163 @@
+{
+  "project": {
+    "name": "open-deep-research",
+    "version": "0.1.0",
+    "description": "Open-Source clone of OpenAI's Deep Research experiment using Firecrawl for web search/extraction",
+    "stack": {
+      "framework": "Next.js 15 (App Router)",
+      "ui": "React 19 RC",
+      "styling": "Tailwind CSS + shadcn/ui",
+      "ai": "Vercel AI SDK",
+      "database": "PostgreSQL (Drizzle ORM)",
+      "auth": "NextAuth.js",
+      "storage": "Vercel Blob"
+    }
+  },
+  "architecture": {
+    "patterns": {
+      "routing": "App Router with route groups",
+      "components": "React Server Components + Client Components",
+      "state": "Context API for deep research state",
+      "data": "Server Actions + tRPC-style API routes"
+    },
+    "directories": {
+      "app": {
+        "description": "Next.js App Router pages and API routes",
+        "groups": {
+          "(auth)": "Authentication-related pages and APIs",
+          "(chat)": "Chat application pages and APIs"
+        }
+      },
+      "components": {
+        "description": "Reusable React components",
+        "subdirs": {
+          "ui": "shadcn/ui primitive components"
+        }
+      },
+      "lib": {
+        "description": "Core business logic and utilities",
+        "subdirs": {
+          "ai": "AI SDK configurations and prompts",
+          "db": "Database schema and queries",
+          "editor": "Text editor utilities"
+        }
+      },
+      "hooks": {
+        "description": "Custom React hooks"
+      },
+      "public": {
+        "description": "Static assets",
+        "subdirs": {
+          "fonts": "Web fonts",
+          "images": "Image assets"
+        }
+      }
+    }
+  },
+  "naming_conventions": {
+    "files": {
+      "components": "kebab-case.tsx (e.g., deep-research.tsx)",
+      "hooks": "use-[name].ts (e.g., use-block.ts)",
+      "api_routes": "route.ts",
+      "pages": "page.tsx",
+      "layouts": "layout.tsx",
+      "types": "types.ts",
+      "utils": "utils.ts or [domain].ts"
+    },
+    "exports": {
+      "components": "PascalCase (e.g., DeepResearch)",
+      "hooks": "camelCase with 'use' prefix (e.g., useBlock)",
+      "types": "PascalCase for types/interfaces",
+      "functions": "camelCase"
+    }
+  },
+  "component_types": {
+    "ui_components": {
+      "pattern": "components/ui/*.tsx",
+      "description": "shadcn/ui primitive components",
+      "examples": ["button", "card", "dialog", "tooltip"]
+    },
+    "feature_components": {
+      "pattern": "components/*.tsx",
+      "description": "Feature-specific components",
+      "examples": ["chat", "deep-research", "document", "message"]
+    },
+    "layout_components": {
+      "pattern": "components/*sidebar*.tsx, components/*header*.tsx",
+      "description": "Layout and navigation components",
+      "examples": ["app-sidebar", "chat-header", "sidebar-history"]
+    },
+    "editor_components": {
+      "pattern": "components/*editor*.tsx",
+      "description": "Editor-related components",
+      "examples": ["editor", "code-editor", "message-editor", "spreadsheet-editor"]
+    }
+  },
+  "api_patterns": {
+    "routes": {
+      "structure": "app/(group)/api/[resource]/route.ts",
+      "methods": ["GET", "POST", "PUT", "DELETE"],
+      "auth": "Using NextAuth session validation"
+    },
+    "endpoints": {
+      "chat": "Main chat interaction endpoint",
+      "document": "Document generation and management",
+      "suggestions": "AI-powered suggestions",
+      "history": "Chat history management",
+      "vote": "User feedback collection"
+    }
+  },
+  "database_schema": {
+    "tables": {
+      "User": "User accounts",
+      "Chat": "Chat sessions",
+      "Message": "Chat messages",
+      "Document": "Generated documents",
+      "Vote": "User votes/feedback",
+      "Suggestion": "AI suggestions"
+    },
+    "orm": "Drizzle ORM with PostgreSQL"
+  },
+  "ai_integration": {
+    "providers": {
+      "openai": "Default provider",
+      "openrouter": "Alternative provider",
+      "togetherai": "For DeepSeek models"
+    },
+    "models": {
+      "chat": "gpt-4o (default)",
+      "reasoning": "o1-mini or deepseek-reasoner"
+    },
+    "features": {
+      "streaming": "Real-time response streaming",
+      "tools": "Function calling for search/extract",
+      "structured_output": "JSON schema validation"
+    }
+  },
+  "dependencies": {
+    "core": {
+      "@ai-sdk/openai": "OpenAI integration",
+      "@mendable/firecrawl-js": "Web search/extraction",
+      "next": "Framework",
+      "react": "UI library",
+      "drizzle-orm": "Database ORM"
+    },
+    "ui": {
+      "@radix-ui/*": "Headless UI components",
+      "framer-motion": "Animations",
+      "lucide-react": "Icons",
+      "tailwindcss": "Styling"
+    },
+    "editor": {
+      "prosemirror-*": "Rich text editing",
+      "@codemirror/*": "Code editing"
+    }
+  },
+  "conventions": {
+    "error_handling": "Try-catch with proper error responses",
+    "authentication": "Session-based with middleware protection",
+    "data_validation": "Zod schemas for runtime validation",
+    "styling": "Tailwind utility classes with cn() helper",
+    "state_management": "Server state + Context API for client state"
+  }
+} 
